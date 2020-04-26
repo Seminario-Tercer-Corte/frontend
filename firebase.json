@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/video-game-match",
+    "public": "dist/videoGameMatch",
     "ignore": [
       "firebase.json",
       "**/.*",
