@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/video-game-match",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
