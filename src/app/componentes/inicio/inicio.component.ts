@@ -1,0 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-inicio',
+  templateUrl: './inicio.component.html',
+  styleUrls: ['./inicio.component.css']
+})
+export class InicioComponent implements OnInit {
+
+  constructor(private router: Router, private  activedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+  }
+
+  logininicio(){
+    this.router.navigate(['inicio/perfil']);
+  }
+
+
+
+
+
+}
