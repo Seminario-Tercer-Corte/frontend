@@ -1,0 +1,12 @@
+.container-form {
+  min-width: 280px;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.link-register {
+  margin-bottom: 1em;
+}

@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-color: #fff;
+  --brand-color: #290f33;
+  --success-color: #00c851;
+  --danger-color: #ff4444;
+  --font-color: #333;
+  --secondary-color: #bbb;
+  --shadow-input: 0 0 0 1px #ccc;
+  --shadow-input-focus: 0 0 0 2px #4285f4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+body {
+  color: var(--font-color);
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.field {
+  margin-bottom: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

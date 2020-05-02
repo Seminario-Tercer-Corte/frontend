@@ -1,0 +1,46 @@
+.container-main {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-left {
+  position: relative;
+  background-color: var(--brand-color);
+  color: #fff;
+  height: 100%;
+  padding: 7% 10%;
+}
+
+.logo {
+  width: 35%;
+  min-width: 150px;
+  margin-bottom: 1em;
+}
+
+.welcome {
+  font-size: 2em;
+}
+
+.welcome-secondary {
+  font-size: 1.3em;
+}
+
+.welcome strong {
+  color: #fff;
+}
+
+.brand {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+
+.container-rigth {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
