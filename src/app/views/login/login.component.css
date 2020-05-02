@@ -4,6 +4,16 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+@media (max-width: 750px) {
+  .container-main {
+    display: block;
+  }
+
+  .container-left {
+    display: none;
+  }
+}
+
 .container-left {
   position: relative;
   background-color: var(--brand-color);
