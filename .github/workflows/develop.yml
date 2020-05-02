@@ -1,12 +1,12 @@
-name: CI/CD
+name: CI
 
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
-  firebase-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,9 +15,5 @@ jobs:
         with:
           node-version: "10.x"
       - run: npm install
+      - run: npm run lint
       - run: npm run build:prod
-      - uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
