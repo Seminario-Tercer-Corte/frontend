@@ -1,0 +1,27 @@
+<div class="field">
+  <label class="label">{{ label }}</label>
+  <div class="control has-icons-right">
+    <input
+      class="input"
+      [ngClass]="{
+        'is-danger': control.errors && control.touched,
+        'is-success': !control.errors && control.touched
+      }"
+      [type]="type"
+      [placeholder]="placeholder"
+      [formControl]="control"
+    />
+    <span class="icon is-small is-right">
+      <i
+        class="fas"
+        [ngClass]="{
+          'fa-check': !control.errors && control.touched,
+          'fa-exclamation-circle': control.errors && control.touched
+        }"
+      ></i>
+    </span>
+  </div>
+  <p *ngIf="control.errors?.required && control.touched" class="help is-danger">
+    Este campo es requerido
+  </p>
+</div>

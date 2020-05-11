@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
-
 import { PostService } from "src/app/services/post.service";
 import { Observable } from 'rxjs';
 import { Post } from "../../modelo/post";
@@ -12,14 +11,14 @@ import {finalize, map} from 'rxjs/operators';
 
 
 
-@Component({
-  selector: "app-inicio",
-  templateUrl: "./inicio.component.html",
-  styleUrls: ["./inicio.component.css"],
-})
-export class InicioComponent implements OnInit {
-  constructor( private postService: PostService,  private router: Router,private route: ActivatedRoute, private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) {}
 
+
+@Component({
+  selector: 'app-paginaprincipal',
+  templateUrl: './paginaprincipal.component.html',
+  styleUrls: ['./paginaprincipal.component.css']
+})
+export class PaginaprincipalComponent implements OnInit {
   posts: any;
  myPosts: any;
  step = 0;
@@ -32,39 +31,98 @@ export class InicioComponent implements OnInit {
   image:null,
   author:null,
   };
-  ngOnInit(): void {}
 
-  logout() {
-    this.auth.logout();
-    this.router.navigate(["/welcome/login"]);
+
+
+
+
+ // https://github.com/programadornovato/ngFire/blob/master/src/app/components/lista-agrega/lista-agrega.component.ts#L1 
+
+  constructor( private postService: PostService,  private router: Router,private route: ActivatedRoute, private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) {
+    this.postService.retornarposts().subscribe(post=>{
+      this.posts=post;
+      console.log(this.posts);
+      
+    });
+   }
+
+  ngOnInit(
+  ): void {
+
+  
   }
 
   agregar(downloadSrc){
 
 
     
-    this.posts1.image=downloadSrc;
-    console.log(this.posts1)
-    this.postService.create(this.posts1);
+   this.posts1.image=downloadSrc;
+   console.log(this.posts1)
+   this.postService.create(this.posts1);
+   this.step++;
+   this.posts1.title="";
+   this.posts1.image="";
+   this.posts1.content="";
+   this.posts1.author="";
+
+  }
+  cancelar() {
     this.step++;
     this.posts1.title="";
     this.posts1.image="";
     this.posts1.content="";
     this.posts1.author="";
- 
-   }
-   cancelar() {
-     this.step++;
-     this.posts1.title="";
-     this.posts1.image="";
-     this.posts1.content="";
-     this.posts1.author="";
- 
-     
-   }
- 
+
+    
+  }
+
+
+
+
+  logearse(){
+    this.router.navigate(["/welcome/login"]);
+
+  }
+
+  informacion(){
+    this.router.navigate(["/informacion"]);
+
+  }
+
+  logingoogle(){
+
+    try {
+      this.auth.loginGoogle();
+    }catch (error){
+      console.log(error)
+    }
+
+
+  }
+
+
+  busqueda(){
+
+    try {
+      this.auth.busqueda();
+    }catch (error){
+      console.log(error)
+    }
+
+
+  }
+  
+
+   onLogout() {
+    try {
+      this.auth.logout1();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
    
+
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadState: Observable<string>;
@@ -111,4 +169,6 @@ export class InicioComponent implements OnInit {
 
 
   }
+
+
 }

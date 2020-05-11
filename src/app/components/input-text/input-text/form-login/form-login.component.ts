@@ -50,19 +50,6 @@ export class FormLoginComponent implements OnInit {
     }
   }
 
-  
-  logingoogle(){
-
-    try {
-      this.auth.loginGoogle();
-      this.router.navigate(["/inicio"]);
-    }catch (error){
-      console.log(error)
-    }
-
-
-  }
-
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/inicio";
   }

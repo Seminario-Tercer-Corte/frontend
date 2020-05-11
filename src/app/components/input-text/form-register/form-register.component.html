@@ -1,6 +1,6 @@
 <message
   *ngIf="showMessage"
-  [message]="error"
+  [message]="message"
   [success]="messageSuccess"
   (display)="showMessage = $event"
 ></message>
@@ -9,13 +9,20 @@
   <div class="logo-responsive">
     <img src="assets/logo.png" />
   </div>
-  <h1>Iniciar sesión</h1>
+  <h1>Registrarse</h1>
   <p class="link-register">
-    Si aun no tienes una cuenta puedes registrarte
-    <a routerLink="/welcome/register">aquí</a>
+    Si ya tienes una cuenta puedes registrarte
+    <a routerLink="/welcome/login">aquí</a>
   </p>
-  <form class="form" [formGroup]="loginForm">
+  <form class="form" [formGroup]="registerForm">
     <div class="form-container">
+      <input-text
+        type="text"
+        label="Nombres"
+        placeholder="Ingrese su nombre"
+        [control]="name"
+      ></input-text>
+
       <input-text
         type="text"
         label="Nombre de usuario"
@@ -33,22 +40,12 @@
     <div class="button-container">
       <button
         class="button is-primary"
-        (click)="login()"
-        [disabled]="loginForm.invalid"
+        (click)="signup()"
+        [disabled]="registerForm.invalid"
         [ngClass]="{ 'is-loading': isLoading }"
       >
-        Entrar
+        Registrarse
       </button>
-      <button
-      class="button is-primary"
-      (click)=" logingoogle()"
-    
-      [ngClass]="{ 'is-loading': isLoading }"
-    >
-      Login Google
-    </button>
-
-    
     </div>
   </form>
 </div>
