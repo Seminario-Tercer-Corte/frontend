@@ -1,6 +1,6 @@
 
 export const environment = {
-  production: false,
+  production: true,
   firebase : { 
     apiKey: "AIzaSyBiB_oQA7sOrmYmQyTqkocohyG7tq1FIf0",
     authDomain: "videogamematch-1f906.firebaseapp.com",
