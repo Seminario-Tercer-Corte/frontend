@@ -2,13 +2,15 @@
 export const environment = {
   production: false,
   firebase : { 
-    apiKey: "AIzaSyBk9CNXJlHUkzaQfGiID2dlQEsK59Oc-tQ",
-    authDomain: "prueba-2c998.firebaseapp.com",
-    databaseURL: "https://prueba-2c998.firebaseio.com",
-    projectId: "prueba-2c998",
-    storageBucket: "prueba-2c998.appspot.com",
-    messagingSenderId: "690691472369",
-    appId: "1:690691472369:web:d4f70c064e48f4236fa250"
+    apiKey: "AIzaSyBiB_oQA7sOrmYmQyTqkocohyG7tq1FIf0",
+    authDomain: "videogamematch-1f906.firebaseapp.com",
+    databaseURL: "https://videogamematch-1f906.firebaseio.com",
+    projectId: "videogamematch-1f906",
+    storageBucket: "videogamematch-1f906.appspot.com",
+    messagingSenderId: "12108527350",
+    appId: "1:12108527350:web:bcb4b9e054b3513bb55ed7",
+    measurementId: "G-JFCQ33N5SV"
   }
   
 };
+
