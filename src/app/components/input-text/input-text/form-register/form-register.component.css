@@ -1,0 +1,34 @@
+.container-form {
+  min-width: 280px;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.link-register {
+  margin-bottom: 1em;
+}
+
+.logo-responsive {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .container-form h1,
+  .container-form p {
+    text-align: center;
+  }
+
+  .container-form {
+    width: 90%;
+    margin: auto;
+  }
+
+  .logo-responsive {
+    display: block;
+    width: 40%;
+    margin: auto;
+  }
+}

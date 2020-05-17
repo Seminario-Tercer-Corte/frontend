@@ -1,0 +1,46 @@
+<message
+  *ngIf="showMessage"
+  [message]="error"
+  [success]="messageSuccess"
+  (display)="showMessage = $event"
+></message>
+
+<div class="container-form">
+  <div class="logo-responsive">
+    <img src="assets/logo.png" />
+  </div>
+  <h1>Iniciar sesión</h1>
+  <p class="link-register">
+    Si aun no tienes una cuenta puedes registrarte
+    <a routerLink="/welcome/register">aquí</a>
+  </p>
+  <form class="form" [formGroup]="loginForm">
+    <div class="form-container">
+      <input-text
+        type="text"
+        label="Nombre de usuario"
+        placeholder="Ingrese su nombre de usuario"
+        [control]="username"
+      ></input-text>
+
+      <input-text
+        type="password"
+        label="Contraseña"
+        placeholder="Ingrese su constraseña"
+        [control]="password"
+      ></input-text>
+    </div>
+    <div class="button-container">
+      <button
+        class="button is-primary"
+        (click)="login()"
+        [disabled]="loginForm.invalid"
+        [ngClass]="{ 'is-loading': isLoading }"
+      >
+        Entrar
+      </button>
+    </div>
+  </form>
+</div>
+
+

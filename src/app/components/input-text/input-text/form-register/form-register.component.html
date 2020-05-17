@@ -1,0 +1,51 @@
+<message
+  *ngIf="showMessage"
+  [message]="message"
+  [success]="messageSuccess"
+  (display)="showMessage = $event"
+></message>
+
+<div class="container-form">
+  <div class="logo-responsive">
+    <img src="assets/logo.png" />
+  </div>
+  <h1>Registrarse</h1>
+  <p class="link-register">
+    Si ya tienes una cuenta puedes registrarte
+    <a routerLink="/welcome/login">aquí</a>
+  </p>
+  <form class="form" [formGroup]="registerForm">
+    <div class="form-container">
+      <input-text
+        type="text"
+        label="Nombres"
+        placeholder="Ingrese su nombre"
+        [control]="name"
+      ></input-text>
+
+      <input-text
+        type="text"
+        label="Nombre de usuario"
+        placeholder="Ingrese su nombre de usuario"
+        [control]="username"
+      ></input-text>
+
+      <input-text
+        type="password"
+        label="Contraseña"
+        placeholder="Ingrese su constraseña"
+        [control]="password"
+      ></input-text>
+    </div>
+    <div class="button-container">
+      <button
+        class="button is-primary"
+        (click)="signup()"
+        [disabled]="registerForm.invalid"
+        [ngClass]="{ 'is-loading': isLoading }"
+      >
+        Registrarse
+      </button>
+    </div>
+  </form>
+</div>

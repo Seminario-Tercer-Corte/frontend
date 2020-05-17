@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+    <div class="logo">
+      <a href="principa;">
+        <img src="assets/logo_white.png" />
+          </a>
+      </div>
+      <span class="example-spacer"></span>
+
+            
+      <button mat-raised-button color="primary" class="botonlog" (click)=" logingoogle()">logearse google</button>
+
+      <button mat-raised-button color="primary" class="botonlog" (click)="  busqueda()">busqueda</button>
+
+      <button mat-raised-button color="primary" class="botonlog" (click)="  onLogout()">deslogearse</button>
+
+
+      <button mat-raised-button color="primary" class="botonlog" (click)=" informacion()">Informacion</button>
+      
+      <button mat-raised-button color="primary" class="botonlog" (click)="logearse()">Login</button>
+
+ </mat-toolbar>
+
+
+
+
+<div class="row">
+  <div class="col-4 menu">
+    <app-segundatempo></app-segundatempo>
+  </div>
+
+  <div class="col-8">
+  
+    <div>
+      <mat-card class="example-card a1"  *ngFor = "let pos of posts">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{pos.title}}</mat-card-title>
+          <mat-card-subtitle>{{pos.author}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{pos.image}}" >
+        <mat-card-content>
+          <p>
+            {{pos.content}}
+          </p>
+        </mat-card-content>
+      
+      </mat-card>
+      </div>
+
+
+
+   </div>
+
+
+</div>
+
+
+
+
+
