@@ -5,4 +5,6 @@ export const constants = {
   registerUrl: `${API_URL}auth/signup`,
   loginGoogle: `${API_URL}auth/google`,
   profileUrl: `${API_URL}auth/profile`,
+  teamAll: `${API_URL}teams/all`,
+  teamSave: `${API_URL}teams/save`,
 };
