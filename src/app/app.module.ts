@@ -35,6 +35,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { InformacionComponent } from './views/informacion/informacion.component';
 import { SegundatempoComponent } from './views/segundatempo/segundatempo.component';
+import { AdministradorComponent } from './views/administrador/administrador.component';
 
 
 
@@ -52,6 +53,7 @@ import { SegundatempoComponent } from './views/segundatempo/segundatempo.compone
     PaginaprincipalComponent,
     InformacionComponent,
     SegundatempoComponent,
+    AdministradorComponent,
 
   ],
   imports: [

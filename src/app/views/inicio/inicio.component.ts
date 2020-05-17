@@ -62,6 +62,20 @@ export class InicioComponent implements OnInit {
  
      
    }
+
+   local() {
+  this.auth.local();
+
+
+
+
+
+
+  
+
+    
+  }
+
  
 
    

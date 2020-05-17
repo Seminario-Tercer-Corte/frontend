@@ -35,16 +35,23 @@ export class AuthService {
   async loginGoogle(){
     console.log("busqueda1");
     try {
-     return this.afAuth.signInWithPopup(
+      this.afAuth.signInWithPopup(
         new auth.GoogleAuthProvider()
         
-      );
+        
+      ).then(
+        data=>console.log(data)
+        
+      )
+      
+    
      
      
     } catch (error) {
       console.log(error);
     }
-  
+    this.afAuth.authState.subscribe( data => this.authState = data)
+    console.log(this.authState)
 }
 
 async busqueda(){
@@ -60,6 +67,11 @@ async logout1(): Promise<void> {
   } catch (error) {
     console.log(error);
   }
+}
+
+
+ local(){
+  console.log(localStorage)
 }
 
 
