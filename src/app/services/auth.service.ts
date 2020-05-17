@@ -71,7 +71,7 @@ async logout1(): Promise<void> {
 
 
  local(){
-  console.log(localStorage)
+  console.log(JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
 }
 
 

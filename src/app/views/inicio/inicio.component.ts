@@ -3,8 +3,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 
 import { PostService } from "src/app/services/post.service";
+import { TeamService } from "src/app/services/team.service";
+
 import { Observable } from 'rxjs';
 import { Post } from "../../modelo/post";
+import { team } from "../../modelo/team";
+
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage'
 import {HttpClient} from '@angular/common/http';
 import {finalize, map} from 'rxjs/operators';
@@ -18,25 +22,46 @@ import {finalize, map} from 'rxjs/operators';
   styleUrls: ["./inicio.component.css"],
 })
 export class InicioComponent implements OnInit {
-  constructor( private postService: PostService,  private router: Router,private route: ActivatedRoute, private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) {}
-
+  constructor( private postService: PostService,private te: TeamService,  private router: Router,private route: ActivatedRoute, private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) {
+  }
+team2 = [];
   posts: any;
  myPosts: any;
  step = 0;
  setStep(index: number) {
   this.step = index;
 }
- posts1: Post = {   
-  title:null,
-  content:null,
-  image:null,
-  author:null,
+ team1: team = {   
+  descripcion: null,
+  email: null,
+  game: null,
+  name: null,
+  ubication: null,
+  organizacion:null,
   };
-  ngOnInit(): void {}
+
+  posts1: Post = {   
+    title:null,
+    content:null,
+    image:null,
+    author:null,
+    };
+  ngOnInit(): void {
+    this.te.gerGreting().subscribe((data: any[])=>{
+      console.log(data);
+      this.team2 = data;
+    })  
+  }
 
   logout() {
     this.auth.logout();
     this.router.navigate(["/welcome/login"]);
+  }
+
+  agregarteam() {
+
+    this.te.registroteam(this.team1);
+this.cancelar1
   }
 
   agregar(downloadSrc){
@@ -63,6 +88,18 @@ export class InicioComponent implements OnInit {
      
    }
 
+   cancelar1() {
+    this.step++;
+    this.team1.descripcion="";
+    this.team1.email="";
+    this.team1.game="";
+    this.team1.name="";
+    this.team1.organizacion="";
+    this.team1.ubication="";
+
+
+    
+  }
    local() {
   this.auth.local();
 
