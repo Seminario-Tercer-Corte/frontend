@@ -1,9 +1,12 @@
-export interface team{
-    descripcion?: string;
-    email?: string;
-    game?: string;
-    name?: string;
-    ubication?: string;
-    organizacion?:string;
+import { organizacion } from './organizacion';
 
+export interface team {
+
+    id?: number;
+    name?: string;
+    description?: string;
+    game?: string;
+    ubication?: string;
+    email?: string;
+    organization_id?: number;
 }

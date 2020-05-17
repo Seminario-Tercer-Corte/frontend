@@ -10,11 +10,8 @@ import { Post } from "../../modelo/post";
 import { team } from "../../modelo/team";
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage'
-import {HttpClient} from '@angular/common/http';
-import {finalize, map} from 'rxjs/operators';
-
-
-
+import { HttpClient } from '@angular/common/http';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: "app-inicio",
@@ -22,35 +19,34 @@ import {finalize, map} from 'rxjs/operators';
   styleUrls: ["./inicio.component.css"],
 })
 export class InicioComponent implements OnInit {
-  constructor( private postService: PostService,private te: TeamService,  private router: Router,private route: ActivatedRoute, private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) {
+  constructor(private postService: PostService, private te: TeamService, private router: Router, private route: ActivatedRoute, private auth: AuthService, private afStorage: AngularFireStorage, private http: HttpClient) {
   }
-team2 = [];
+  team2 = [];
   posts: any;
- myPosts: any;
- step = 0;
- setStep(index: number) {
-  this.step = index;
-}
- team1: team = {   
-  descripcion: null,
-  email: null,
-  game: null,
-  name: null,
-  ubication: null,
-  organizacion:null,
+  myPosts: any;
+  step = 0;
+  setStep(index: number) {
+    this.step = index;
+  }
+  team1: team = {
+    description: null,
+    email: null,
+    game: null,
+    name: null,
+    ubication: null
   };
 
-  posts1: Post = {   
-    title:null,
-    content:null,
-    image:null,
-    author:null,
-    };
+  posts1: Post = {
+    title: null,
+    content: null,
+    image: null,
+    author: null,
+  };
   ngOnInit(): void {
-    this.te.gerGreting().subscribe((data: any[])=>{
+    this.te.gerGreting().subscribe((data: any[]) => {
       console.log(data);
       this.team2 = data;
-    })  
+    })
   }
 
   logout() {
@@ -59,63 +55,57 @@ team2 = [];
   }
 
   agregarteam() {
-
     this.te.registroteam(this.team1);
-this.cancelar1
+    this.cancelar1
   }
 
-  agregar(downloadSrc){
+  agregar(downloadSrc) {
 
-
-    
-    this.posts1.image=downloadSrc;
+    this.posts1.image = downloadSrc;
     console.log(this.posts1)
     this.postService.create(this.posts1);
     this.step++;
-    this.posts1.title="";
-    this.posts1.image="";
-    this.posts1.content="";
-    this.posts1.author="";
- 
-   }
-   cancelar() {
-     this.step++;
-     this.posts1.title="";
-     this.posts1.image="";
-     this.posts1.content="";
-     this.posts1.author="";
- 
-     
-   }
+    this.posts1.title = "";
+    this.posts1.image = "";
+    this.posts1.content = "";
+    this.posts1.author = "";
 
-   cancelar1() {
+  }
+  cancelar() {
     this.step++;
-    this.team1.descripcion="";
-    this.team1.email="";
-    this.team1.game="";
-    this.team1.name="";
-    this.team1.organizacion="";
-    this.team1.ubication="";
+    this.posts1.title = "";
+    this.posts1.image = "";
+    this.posts1.content = "";
+    this.posts1.author = "";
 
 
-    
-  }
-   local() {
-  this.auth.local();
-
-
-
-
-
-
-  
-
-    
   }
 
- 
+  cancelar1() {
+    this.step++;
+    this.team1.description = "";
+    this.team1.email = "";
+    this.team1.game = "";
+    this.team1.name = "";
+    this.team1.organization_id;
+    this.team1.ubication = "";
+  }
+  local() {
+    this.auth.local();
 
-   
+
+
+
+
+
+
+
+
+  }
+
+
+
+
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadState: Observable<string>;
@@ -141,23 +131,23 @@ this.cancelar1
         // tslint:disable-next-line:triple-equals
         if (result.bytesTransferred == result.totalBytes) {
           setTimeout(() => {
-             this.ref.getDownloadURL().subscribe(result1 => {
+            this.ref.getDownloadURL().subscribe(result1 => {
 
-    
-             });
-        
+
+            });
+
 
           }, 200);
         }
       });
 
-      console.log(this.downloadURL)
-      console.log(this.uploadState)
-      console.log(this.uploadProgress)
-      console.log(this.url)
-      console.log(this.ref.getDownloadURL())
-      console.log(this.ref.getMetadata())
-      console.log(this.ref)
+    console.log(this.downloadURL)
+    console.log(this.uploadState)
+    console.log(this.uploadProgress)
+    console.log(this.url)
+    console.log(this.ref.getDownloadURL())
+    console.log(this.ref.getMetadata())
+    console.log(this.ref)
 
 
 

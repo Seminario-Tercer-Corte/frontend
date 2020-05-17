@@ -1,32 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { team } from "../../app/modelo/team";
+import { constants } from "../../app/utils/constants";
 
 
-const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  API_URI = 'https://seminario-tercer-corte.herokuapp.com';
-  
-
   constructor(private http: HttpClient) { }
 
-  gerGreting(){
-cabecera.headers.set( 'Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
-   
-
-     return this.http.get(`${this.API_URI}/api/v1/teams/all`,cabecera);
+  gerGreting() {
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
+    return this.http.get(`${constants.teamAll}`, cabecera);
   }
- 
-  registroteam(team : team): Observable<any> {
-    console.log(team )
-cabecera.headers.set( 'Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
-try {  return this.http.post<team>(`${this.API_URI}/api/v1/teams/save`,team ,cabecera);}  catch (error) {
-  console.log(error);
-}
+
+  registroteam(team: team) {
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
+    return this.http.post<team>(`${constants.teamSave}`, team, cabecera).subscribe(response => {
+
+      // You can access status:
+      console.log(response);
+    });
   }
 
 }
