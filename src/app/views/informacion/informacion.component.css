@@ -92,11 +92,14 @@ html {
 }
 
 
+.a1{
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  width: 80%;
 
-
-
-
-
+}
 
 
 /* For mobile phones: */
