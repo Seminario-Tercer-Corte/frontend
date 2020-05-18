@@ -94,3 +94,74 @@
     <button mat-button color="primary" (click)="local()">local</button>
 
 </section>
+
+
+<div class="col-8">
+
+    <div>
+      <mat-card class="example-card a1" *ngFor="let team of team2">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{team.name}}</mat-card-title>
+          <mat-card-subtitle>{{team.game}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{team.description}}
+          </p>
+        </mat-card-content>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="editar(team)" data-toggle="modal" data-target="#exampleModal">editar</button>
+
+                <button mat-button color="warn" (click)="eliminarteam(team.id)">eliminar</button>
+            </mat-action-row>
+      </mat-card>
+    </div>
+
+
+
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <mat-form-field appearance="fill">
+                <mat-label>nombre</mat-label>
+                <input matInput type="text" name="name" [(ngModel)]="team1.name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>juego</mat-label>
+                <input matInput type="text" name="game" [(ngModel)]="team1.game">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>descripcion</mat-label>
+                <input matInput type="text" name="descripcion" [(ngModel)]="team1.description">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>email</mat-label>
+                <input matInput type="text" name="email" [(ngModel)]="team1.email">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>ubicacion</mat-label>
+                <input matInput type="text" name="ubication" [(ngModel)]="team1.ubication">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>organizacion</mat-label>
+                <input matInput type="text" name="organizacion" [(ngModel)]="team1.organization_id">
+            </mat-form-field>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="editarteam()"  data-dismiss="modal">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -43,15 +43,51 @@ export class InicioComponent implements OnInit {
     author: null,
   };
   ngOnInit(): void {
-    this.te.gerGreting().subscribe((data: any[]) => {
+    this.te.getteams().subscribe((data: any[]) => {
       console.log(data);
       this.team2 = data;
     })
   }
+  eliminarteam(id){
+this.te.eliminarteam(id)
+console.log(id)
 
+this.te.getteams().subscribe((data: any[]) => {
+  console.log(data);
+  this.team2 = data;
+})
+
+  }
   logout() {
     this.auth.logout();
     this.router.navigate(["/welcome/login"]);
+  }
+
+  editar(team){
+    this.team1.id = team.id;
+    this.team1.description = team.description;
+    this.team1.email = team.email;
+    this.team1.game = team.game;
+    this.team1.name = team.name;
+    this.team1.organization_id=team.organization.id;
+    this.team1.ubication = team.ubication;
+
+    console.log(team.organization.id)
+
+
+  }
+
+  editarteam()
+  {
+    console.log(this.team1)
+
+
+    this.te.editar(this.team1)
+
+    this.te.getteams().subscribe((data: any[]) => {
+      console.log(data);
+      this.team2 = data;
+    })
   }
 
   agregarteam() {

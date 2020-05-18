@@ -7,4 +7,7 @@ export const constants = {
   profileUrl: `${API_URL}auth/profile`,
   teamAll: `${API_URL}teams/all`,
   teamSave: `${API_URL}teams/save`,
+  teamDelete: `${API_URL}teams/delete/`,
+  teamUpdate: `${API_URL}teams/update`,
+
 };
