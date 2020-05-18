@@ -1,40 +1,48 @@
 <mat-toolbar color="primary">
-    <div class="logo">
-        <a href="principa;">
-        <img src="assets/logo_white.png" />
-          </a>
-      </div>
-      <span class="example-spacer"></span>
+  <div class="logo">
+    <a href="principa;">
+      <img src="assets/logo_white.png" />
+    </a>
+  </div>
+  <span class="example-spacer"></span>
 
 
-      <button mat-raised-button color="primary" class="botonlog" (click)=" informacion()">Informacion</button>
-      
-      <button mat-raised-button color="primary" class="botonlog" (click)="logearse()">Login</button>
+  <button mat-raised-button color="primary" class="botonlog" (click)=" informacion()">Informacion</button>
 
- </mat-toolbar>
+  <button mat-raised-button color="primary" class="botonlog" (click)="logearse()">Login</button>
 
+</mat-toolbar>
 
-
-
-<div class="row">
+<div class="row" style="background-color: darkgray;">
   <div class="col-4 menu">
     <app-segundatempo></app-segundatempo>
   </div>
 
   <div class="col-8">
-  
-    <div>
-  dsadasdasdasasdasdasd
-     </div>
-
-
-
-   </div>
-
-
+    <mat-card class="example-card a1  main-div">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>STAGE - Liga Nacional de E-sports</mat-card-title>
+      </mat-card-header>
+      <img class="a1" src="assets/torneo.jpg">
+      <mat-card-content>
+        <p>
+          STAGE - Liga Nacional de E-sports nace en Cali, como un nuevo equipo profesional de eSports colombiano,
+          iniciando con escuadra de League of Legends, apuntando a las máximas competencias de la industria que mueve
+          miles de millones de dólares anuales y millones de espectadores al rededor del mundo.
+        </p>
+        <p>
+          Team legend es una organización joven, su historia aún se está escribiendo, te invitamos ser testigo de esta
+          gran leyenda.
+        </p>
+        <p>
+          Ahora en la era moderna, el mundo de los juegos competitivos se llama "eSports" o
+          Deportes Electrónicos. Donde radica nuestro enfoque principal. Nos hemos dedicado
+          a desarrollar nuestras carreras en esta dirección. Millones de personas al rededor del mundo ven partidas de
+          eSports.
+          Esta es una gigantesca oportunidad para promover productos a un público objetivo específico.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
-
-
-
-
-
