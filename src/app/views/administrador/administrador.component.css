@@ -8,6 +8,8 @@
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 2%;
+
     width: 80%;
   }
   
@@ -108,12 +110,37 @@
   font-family: "Lucida Sans", sans-serif;
   }
   
+  .letras{
+
+    text-align: center;
+    font-size: 18px;
+  }
   
   
   
+  .a4{
+    margin-top: 10px;
+      margin-left: 4%;
+      
+      margin-bottom: 5%;
+      width: 20%;
+      float: left;
   
   
   
+  }
+  .photo{
+    border-radius: 50%;
+    width: 40px;
+
+  }
+  
+  .a10{
+
+margin: 3%;
+width: 100%;
+font-size: 20px;    
+  }
   
   
   /* For mobile phones: */

@@ -1,40 +1,122 @@
 <mat-toolbar color="primary">
     <div class="logo">
-      <a href="#/usuario">
-        <img src="assets/logo_white.png" />
+      <a>
+        <img src="assets/logo_white.png"  (click)="mostrar1=true" (click)="mostrar2=false"(click)="mostrar3=false" />
       </a>
     </div>
     <span class="example-spacer">
         
     </span>
   
-    <button mat-raised-button color="primary" class="botonlog" (click)="miequipo()">mi equipo</button>
+    <button mat-raised-button color="secondary" class="botonlog" (click)="mostrar1=false" (click)="mostrar2=true"(click)="mostrar3=false">equipos</button>
 
-    <button mat-raised-button color="primary" class="botonlog" (click)="equipo()">equipos</button>
-  
+    <button mat-raised-button color="secondary" class="botonlog"  (click)="mostrar1=false" (click)="mostrar2=false"(click)="mostrar3=true">mi equipo</button>
+
+    <button mat-raised-button color="primary" class="botonlog"  [matMenuTriggerFor]="menu" (click)="prueba()">  <img src="{{photo}}" class="photo"/>{{nombre}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item (click)="logout()">desloguearse</button>
+    </mat-menu>
   
 
   
   </mat-toolbar>
   
-  
-  
-  
-  <div class="row" style="background-color: darkgray;">
-    <div class="col-4  my-fixed-item " >
+  <div *ngIf="mostrar1"><mat-card class="example-card a1  main-div">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>STAGE - Liga Nacional de E-sports</mat-card-title>
+    </mat-card-header>
+    <img class="a1" src="assets/primera temporada.jpg">
+    <mat-card-content class="letras">
+      <p>
+        STAGE - Liga Nacional de E-sports nace en Cali, como un nuevo equipo profesional de eSports colombiano,
+        iniciando con escuadra de League of Legends, apuntando a las máximas competencias de la industria que mueve
+        miles de millones de dólares anuales y millones de espectadores al rededor del mundo.
+      </p>
+      <p>
+        Team legend es una organización joven, su historia aún se está escribiendo, te invitamos ser testigo de esta
+        gran leyenda.
+      </p>
+      <p>
+        Ahora en la era moderna, el mundo de los juegos competitivos se llama "eSports" o
+        Deportes Electrónicos. Donde radica nuestro enfoque principal. Nos hemos dedicado
+        a desarrollar nuestras carreras en esta dirección. Millones de personas al rededor del mundo ven partidas de
+        eSports.
+        Esta es una gigantesca oportunidad para promover productos a un público objetivo específico.
+      </p>
+      <button mat-raised-button color="primary"   (click)="mostrar1=false" (click)="mostrar2=false"(click)="mostrar3=true">equipos</button>
 
+    </mat-card-content>
+    
+  </mat-card>
+ </div>
 
-    </div>
-  
-    <div class="col-8">
-  
+  <div *ngIf="mostrar2">  
+    
+    <img class="a5" src="assets/fondo.jpg">
+
+       
+    <div class="col-12">
       <div>
- dasdasd
+          <mat-card class="example-card a4" *ngFor="let team of team2">
+              <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{team.name}}</mat-card-title>
+                  <mat-card-subtitle>{{team.game}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                  <p>
+                      {{team.description}}
+                  </p>
+              </mat-card-content>
+              <mat-action-row>
+                  <button mat-button color="primary"  (click)="infor(team) "data-toggle="modal" data-target="#exampleModal">mas informacion</button>
+  
+              </mat-action-row>
+          </mat-card>
       </div>
-  
-  
-  
-    </div>
+    
+
+          
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title a10">informacion del equipo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          </div>
+          <img class="a6" src="assets/LoL2.jpg">
+
+          <div class="modal-body" >
+            
+            <div class="a10">    nombre del equipo   : {{team1.name}}</div>
+            <div class="a10">    videojuego : {{team1.game}}</div>
+            <div class="a10">    descripcion : {{team1.description}}</div>
+            <div class="a10">    email : {{team1.email}}</div>
+            <div class="a10">    ubicacion : {{team1.ubication}}</div>
+
+
+   
+                       
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary"  data-dismiss="modal">entrar al equipo</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+  </div>
+  <div *ngIf="mostrar3"> 
+    
+  aqui se dara informacion de todos los equipos para elegir
   
   
   </div>
+
+  
+  

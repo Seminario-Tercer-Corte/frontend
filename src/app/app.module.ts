@@ -36,8 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { InformacionComponent } from './views/informacion/informacion.component';
 import { SegundatempoComponent } from './views/segundatempo/segundatempo.component';
 import { AdministradorComponent } from './views/administrador/administrador.component';
-import { EquiposComponent } from './views/equipos/equipos.component';
-import { MiequipoComponent } from './views/miequipo/miequipo.component';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 
 
@@ -56,8 +56,6 @@ import { MiequipoComponent } from './views/miequipo/miequipo.component';
     InformacionComponent,
     SegundatempoComponent,
     AdministradorComponent,
-    EquiposComponent,
-    MiequipoComponent,
 
   ],
   imports: [
@@ -78,6 +76,7 @@ import { MiequipoComponent } from './views/miequipo/miequipo.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

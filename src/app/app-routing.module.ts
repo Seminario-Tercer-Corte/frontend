@@ -5,9 +5,6 @@ import { LoginComponent } from "./views/login/login.component";
 import { PaginaprincipalComponent} from "./views/paginaprincipal/paginaprincipal.component";
 import { InformacionComponent} from "./views/informacion/informacion.component";
 import { AdministradorComponent} from "./views/administrador/administrador.component";
-import { EquiposComponent} from "./views/equipos/equipos.component";
-
-import { MiequipoComponent} from "./views/miequipo/miequipo.component";
 
 
 
@@ -60,16 +57,7 @@ const routes: Routes = [
     component: AdministradorComponent,
    
   },
-  {
-    path: "usuarios/equipos",
-    component: EquiposComponent,
-   
-  },
-  {
-    path: "usuarios/miequipo",
-    component: MiequipoComponent,
-   
-  },
+
 
 
 ];
