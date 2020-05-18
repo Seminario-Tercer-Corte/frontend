@@ -1,7 +1,7 @@
 export interface organizacion {
     id?: number;
-    descripcion?: string;
+    description?: string;
     email?: string;
-    nombre?: string;
+    name?: string;
     ubication?: string;
 }
