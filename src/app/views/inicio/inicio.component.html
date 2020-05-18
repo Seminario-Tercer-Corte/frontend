@@ -1,98 +1,96 @@
+<button (click)="logout()">Cerrar sesión</button>
 
-  <button (click)="logout()">Cerrar sesión</button>
-
-  <section style="background-color: darkgray;">
+<section>
     <mat-accordion>
-      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            subir post
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Titulo</mat-label>
-          <input matInput type="text" name="title" [(ngModel)]="posts1.title">
-        </mat-form-field>
-
-
-        <div>
-          <input type="file" class="file" (change)="upload($event)" />
-          <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-            <img src="{{downloadSrc}}" height="100px" type="image/tif" class="imagemuestra" />
-
-
-
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    subir post
+                </mat-panel-title>
+            </mat-expansion-panel-header>
 
             <mat-form-field appearance="fill">
-              <mat-label>Contenido</mat-label>
-              <input matInput type="text" class="contenido" name="content" [(ngModel)]="posts1.content">
-
-
+                <mat-label>Titulo</mat-label>
+                <input matInput type="text" name="title" [(ngModel)]="posts1.title">
             </mat-form-field>
 
+
+            <div>
+                <input type="file" class="file" (change)="upload($event)" />
+                <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                    <img src="{{downloadSrc}}" height="100px" type="image/tif" class="imagemuestra" />
+
+
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Contenido</mat-label>
+                        <input matInput type="text" class="contenido" name="content" [(ngModel)]="posts1.content">
+
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Autor</mat-label>
+                        <input matInput type="text" name="author" [(ngModel)]="posts1.author">
+                    </mat-form-field>
+
+                    <mat-action-row>
+                        <button mat-button color="warn" (click)="agregar(downloadSrc)">guardar</button>
+                    </mat-action-row>
+
+                </div>
+            </div>
+            <mat-action-row>
+
+                <button mat-button color="primary" (click)="cancelar()">cancelar</button>
+            </mat-action-row>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    crear equipos </mat-panel-title>
+            </mat-expansion-panel-header>
+
             <mat-form-field appearance="fill">
-              <mat-label>Autor</mat-label>
-              <input matInput type="text" name="author" [(ngModel)]="posts1.author">
+                <mat-label>nombre</mat-label>
+                <input matInput type="text" name="name" [(ngModel)]="team1.name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>juego</mat-label>
+                <input matInput type="text" name="game" [(ngModel)]="team1.game">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>descripcion</mat-label>
+                <input matInput type="text" name="descripcion" [(ngModel)]="team1.description">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>email</mat-label>
+                <input matInput type="text" name="email" [(ngModel)]="team1.email">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>ubicacion</mat-label>
+                <input matInput type="text" name="ubication" [(ngModel)]="team1.ubication">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>organizacion</mat-label>
+                <input matInput type="text" name="organizacion" [(ngModel)]="team1.organization_id">
             </mat-form-field>
 
             <mat-action-row>
-              <button mat-button color="warn" (click)="agregar(downloadSrc)">guardar</button>
+                <button mat-button color="warn" (click)="agregarteam()">guardar</button>
+            </mat-action-row>
+            <mat-action-row>
+
+                <button mat-button color="primary" (click)="cancelar1()">cancelar</button>
             </mat-action-row>
 
-          </div>
-        </div>
-        <mat-action-row>
-
-          <button mat-button color="primary" (click)="cancelar()">cancelar</button>
-        </mat-action-row>
-
-      </mat-expansion-panel>
-    </mat-accordion>
-
-    <mat-accordion>
-      <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            crear equipos </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <mat-form-field appearance="fill">
-          <mat-label>nombre</mat-label>
-          <input matInput type="text" name="name" [(ngModel)]="team1.name">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>juego</mat-label>
-          <input matInput type="text" name="game" [(ngModel)]="team1.game">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>descripcion</mat-label>
-          <input matInput type="text" name="descripcion" [(ngModel)]="team1.descripcion">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>email</mat-label>
-          <input matInput type="text" name="email" [(ngModel)]="team1.email">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>ubicacion</mat-label>
-          <input matInput type="text" name="ubication" [(ngModel)]="team1.ubication">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>organizacion</mat-label>
-          <input matInput type="text" name="organizacion" [(ngModel)]="team1.organizacion">
-        </mat-form-field>
-
-
-        <mat-action-row>
-          <button mat-button color="warn" (click)="agregarteam()">guardar</button>
-        </mat-action-row>
-        <mat-action-row>
-
-          <button mat-button color="primary" (click)="cancelar1()">cancelar</button>
-        </mat-action-row>
-
-      </mat-expansion-panel>
+        </mat-expansion-panel>
     </mat-accordion>
     <button mat-button color="primary" (click)="local()">local</button>
 
-  </section>
+</section>
