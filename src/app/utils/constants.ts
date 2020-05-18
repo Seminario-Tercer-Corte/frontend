@@ -9,5 +9,9 @@ export const constants = {
   teamSave: `${API_URL}teams/save`,
   teamDelete: `${API_URL}teams/delete/`,
   teamUpdate: `${API_URL}teams/update`,
+  organizationAll: `${API_URL}organizations/all`,
+  organizationSave: `${API_URL}organizations/save`,
+  organizationDelete: `${API_URL}organizations/delete/`,
+  organizationUpdate: `${API_URL}organizations/update`,
 
 };
