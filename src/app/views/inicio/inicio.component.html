@@ -1,191 +1,316 @@
-<button (click)="logout()">Cerrar sesión</button>
+<mat-toolbar color="primary">
+    <div class="logo">
+      <a >
+        <img src="assets/logo_white.png"  (click)="mostrar1=true" 
+        (click)="mostrar2=false"(click)="mostrar3=false"(click)="mostrar4=false"/>
+      </a>
+    </div>
+    <span class="example-spacer">
+        
+    </span>
+    <button mat-raised-button color="secundary" class="botonlog"  (click)="mostrar1=false" 
+    (click)="mostrar2=true"(click)="mostrar3=false"(click)="mostrar4=false">Posts  </button>
+    <button mat-raised-button color="secundary" class="botonlog"  (click)="mostrar1=false" 
+    (click)="mostrar2=false"(click)="mostrar3=true"(click)="mostrar4=false"> Organizacion</button>
+    <button mat-raised-button color="secundary" class="botonlog"  (click)="mostrar1=false" 
+    (click)="mostrar2=false"(click)="mostrar3=false"(click)="mostrar4=true"> Equipos</button>
 
-<section>
-    <mat-accordion>
-        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    subir post
-                </mat-panel-title>
-            </mat-expansion-panel-header>
+    <button mat-raised-button color="primary" class="botonlog"  (click)="logout()"> logout</button>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Titulo</mat-label>
-                <input matInput type="text" name="title" [(ngModel)]="posts1.title">
-            </mat-form-field>
+  
+ </mat-toolbar>
+
+<div *ngIf="mostrar1">  
+    
+
+    <mat-card class="example-card a1  main-div">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>STAGE - Liga Nacional de E-sports</mat-card-title>
+        </mat-card-header>
+        <img class="a1" src="assets/primera temporada.jpg">
+        <mat-card-content class="letras">
+          <p>
+            STAGE - Liga Nacional de E-sports nace en Cali, como un nuevo equipo profesional de eSports colombiano,
+            iniciando con escuadra de League of Legends, apuntando a las máximas competencias de la industria que mueve
+            miles de millones de dólares anuales y millones de espectadores al rededor del mundo.
+          </p>
+          <p>
+            Team legend es una organización joven, su historia aún se está escribiendo, te invitamos ser testigo de esta
+            gran leyenda.
+          </p>
+          <p>
+            Ahora en la era moderna, el mundo de los juegos competitivos se llama "eSports" o
+            Deportes Electrónicos. Donde radica nuestro enfoque principal. Nos hemos dedicado
+            a desarrollar nuestras carreras en esta dirección. Millones de personas al rededor del mundo ven partidas de
+            eSports.
+            Esta es una gigantesca oportunidad para promover productos a un público objetivo específico.
+          </p>
+        </mat-card-content>
+      </mat-card>
+   
+ 
 
 
-            <div>
-                <input type="file" class="file" (change)="upload($event)" />
-                <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-                    <img src="{{downloadSrc}}" height="100px" type="image/tif" class="imagemuestra" />
 
 
-
-
-                    <mat-form-field appearance="fill">
-                        <mat-label>Contenido</mat-label>
-                        <input matInput type="text" class="contenido" name="content" [(ngModel)]="posts1.content">
-
-
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill">
-                        <mat-label>Autor</mat-label>
-                        <input matInput type="text" name="author" [(ngModel)]="posts1.author">
-                    </mat-form-field>
-
-                    <mat-action-row>
-                        <button mat-button color="warn" (click)="agregar(downloadSrc)">guardar</button>
-                    </mat-action-row>
-
+</div>
+<div *ngIf="mostrar2">
+    <section>
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        subir post
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+    
+                <mat-form-field appearance="fill">
+                    <mat-label>Titulo</mat-label>
+                    <input matInput type="text" name="title" [(ngModel)]="posts1.title">
+                </mat-form-field>
+    
+    
+                <div>
+                    <input type="file" class="file" (change)="upload($event)" />
+                    <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                        <img src="{{downloadSrc}}" height="100px" type="image/tif" class="imagemuestra" />
+    
+    
+    
+    
+                        <mat-form-field appearance="fill">
+                            <mat-label>Contenido</mat-label>
+                            <input matInput type="text" class="contenido" name="content" [(ngModel)]="posts1.content">
+    
+    
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill">
+                            <mat-label>Autor</mat-label>
+                            <input matInput type="text" name="author" [(ngModel)]="posts1.author">
+                        </mat-form-field>
+    
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="agregar(downloadSrc)">guardar</button>
+                        </mat-action-row>
+    
+                    </div>
                 </div>
+                <mat-action-row>
+    
+                    <button mat-button color="primary" (click)="cancelar()">cancelar</button>
+                </mat-action-row>
+    
+            </mat-expansion-panel>
+        </mat-accordion>
+    </section>
+        <div>
+            <mat-card class="example-card a1" *ngFor="let pos of posts">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{pos.title}}</mat-card-title>
+                <mat-card-subtitle>{{pos.author}}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="{{pos.image}}">
+              <mat-card-content>
+                <p>
+                  {{pos.content}}
+                </p>
+              </mat-card-content>
+      
+            </mat-card>
+          </div>
+
+</div>
+
+
+<div *ngIf="mostrar3">
+
+    <div class="contenedor">
+        <img src="assets/organizacion.jpg" />
+      </div>
+    <section>
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        crear organizacion </mat-panel-title>
+                </mat-expansion-panel-header>
+    
+                <mat-form-field appearance="fill">
+                    <mat-label>nombre</mat-label>
+                    <input matInput type="text" name="name" [(ngModel)]="organization1.name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>descripcion</mat-label>
+                    <input matInput type="text" name="descripcion" [(ngModel)]="organization1.description">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>email</mat-label>
+                    <input matInput type="text" name="email" [(ngModel)]="organization1.email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>ubicacion</mat-label>
+                    <input matInput type="text" name="ubication" [(ngModel)]="organization1.ubication">
+                </mat-form-field>
+    
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="agregarOrganization()">guardar</button>
+                </mat-action-row>
+                <mat-action-row>
+    
+                    <button mat-button color="primary" (click)="cancelar2()">cancelar</button>
+                </mat-action-row>
+    
+            </mat-expansion-panel>
+        </mat-accordion>
+    </section>
+    
+    <div class="col-12">
+        <div>
+            <mat-card class="example-card a3" *ngFor="let organization of organizations2">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>nombre organizacion: {{organization.name}}</mat-card-title>
+                    <mat-card-subtitle>{{organization.ubication}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{organization.description}}
+                    </p>
+                </mat-card-content>
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="loadOrganization(organization)" data-toggle="modal" data-target="#exampleModal2">editar</button>
+    
+                    <button mat-button color="warn" (click)="eliminarOrganization(organization.id)">eliminar</button>
+                </mat-action-row>
+            </mat-card>
+        </div>
+    
+    
+    
+    </div>
+
+
+    
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
             </div>
-            <mat-action-row>
+            <div class="modal-body">
+                <mat-form-field appearance="fill">
+                    <mat-label>nombre</mat-label>
+                    <input matInput type="text" name="name" [(ngModel)]="organization1.name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>descripcion</mat-label>
+                    <input matInput type="text" name="descripcion" [(ngModel)]="organization1.description">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>email</mat-label>
+                    <input matInput type="text" name="email" [(ngModel)]="organization1.email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>ubicacion</mat-label>
+                    <input matInput type="text" name="ubication" [(ngModel)]="organization1.ubication">
+                </mat-form-field>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="editarOrganization()" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <button mat-button color="primary" (click)="cancelar()">cancelar</button>
-            </mat-action-row>
+</div>
+<div *ngIf="mostrar4">
 
-        </mat-expansion-panel>
-    </mat-accordion>
-
-    <mat-accordion>
-        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    crear organizaiones </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-form-field appearance="fill">
-                <mat-label>nombre</mat-label>
-                <input matInput type="text" name="name" [(ngModel)]="organization1.name">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>descripcion</mat-label>
-                <input matInput type="text" name="descripcion" [(ngModel)]="organization1.description">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>email</mat-label>
-                <input matInput type="text" name="email" [(ngModel)]="organization1.email">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>ubicacion</mat-label>
-                <input matInput type="text" name="ubication" [(ngModel)]="organization1.ubication">
-            </mat-form-field>
-
-            <mat-action-row>
-                <button mat-button color="warn" (click)="agregarOrganization()">guardar</button>
-            </mat-action-row>
-            <mat-action-row>
-
-                <button mat-button color="primary" (click)="cancelar2()">cancelar</button>
-            </mat-action-row>
-
-        </mat-expansion-panel>
-    </mat-accordion>
-
-    <mat-accordion>
-        <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    crear equipos </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-form-field appearance="fill">
-                <mat-label>nombre</mat-label>
-                <input matInput type="text" name="name" [(ngModel)]="team1.name">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>juego</mat-label>
-                <input matInput type="text" name="game" [(ngModel)]="team1.game">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>descripcion</mat-label>
-                <input matInput type="text" name="descripcion" [(ngModel)]="team1.description">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>email</mat-label>
-                <input matInput type="text" name="email" [(ngModel)]="team1.email">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>ubicacion</mat-label>
-                <input matInput type="text" name="ubication" [(ngModel)]="team1.ubication">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>organizacion</mat-label>
-                <input matInput type="text" name="organizacion" [(ngModel)]="team1.organization_id">
-            </mat-form-field>
-
-            <mat-action-row>
-                <button mat-button color="warn" (click)="agregarteam()">guardar</button>
-            </mat-action-row>
-            <mat-action-row>
-
-                <button mat-button color="primary" (click)="cancelar1()">cancelar</button>
-            </mat-action-row>
-
-        </mat-expansion-panel>
-    </mat-accordion>
-    <button mat-button color="primary" (click)="local()">local</button>
-
-</section>
-
-
-<div class="col-8">
-    Organizaciones
-    <div>
-        <mat-card class="example-card a1" *ngFor="let organization of organizations">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{organization.name}}</mat-card-title>
-                <mat-card-subtitle>{{organization.ubication}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    {{organization.description}}
-                </p>
-            </mat-card-content>
-            <mat-action-row>
-                <button mat-button color="primary" (click)="loadOrganization(organization)" data-toggle="modal" data-target="#exampleModal2">editar</button>
-
-                <button mat-button color="warn" (click)="eliminarOrganization(organization.id)">eliminar</button>
-            </mat-action-row>
-        </mat-card>
+    <div class="contenedor">
+        <img src="assets/equipos.jpg" class="img2" />
+      </div>
+    <section>
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        crear equipos </mat-panel-title>
+                </mat-expansion-panel-header>
+    
+                <mat-form-field appearance="fill">
+                    <mat-label>nombre</mat-label>
+                    <input matInput type="text" name="name" [(ngModel)]="team1.name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>juego</mat-label>
+                    <input matInput type="text" name="game" [(ngModel)]="team1.game">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>descripcion</mat-label>
+                    <input matInput type="text" name="descripcion" [(ngModel)]="team1.description">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>email</mat-label>
+                    <input matInput type="text" name="email" [(ngModel)]="team1.email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>ubicacion</mat-label>
+                    <input matInput type="text" name="ubication" [(ngModel)]="team1.ubication">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>organizacion</mat-label>
+                    <input matInput type="text" name="organizacion" [(ngModel)]="team1.organization_id">
+                </mat-form-field>
+    
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="agregarteam()">guardar</button>
+                </mat-action-row>
+                <mat-action-row>
+    
+                    <button mat-button color="primary" (click)="cancelar1()">cancelar</button>
+                </mat-action-row>
+    
+            </mat-expansion-panel>
+        </mat-accordion>
+    
+    
+    
+    </section>
+    
+    
+    
+    <div class="col-12">
+        <div>
+            <mat-card class="example-card a4" *ngFor="let team of team2">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{team.name}}</mat-card-title>
+                    <mat-card-subtitle>{{team.game}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{team.description}}
+                    </p>
+                </mat-card-content>
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="editar(team)" data-toggle="modal" data-target="#exampleModal">editar</button>
+    
+                </mat-action-row>
+            </mat-card>
+        </div>
+    
+    
+    
     </div>
 
 
-
-</div>
-
-<div class="col-8">
-    Equipos
-    <div>
-        <mat-card class="example-card a1" *ngFor="let team of team2">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{team.name}}</mat-card-title>
-                <mat-card-subtitle>{{team.game}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    {{team.description}}
-                </p>
-            </mat-card-content>
-            <mat-action-row>
-                <button mat-button color="primary" (click)="editar(team)" data-toggle="modal" data-target="#exampleModal">editar</button>
-
-                <button mat-button color="warn" (click)="eliminarteam(team.id)">eliminar</button>
-            </mat-action-row>
-        </mat-card>
-    </div>
-
-
-
-</div>
-
-
-
-
+    
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -229,38 +354,15 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <mat-form-field appearance="fill">
-                    <mat-label>nombre</mat-label>
-                    <input matInput type="text" name="name" [(ngModel)]="organization1.name">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>descripcion</mat-label>
-                    <input matInput type="text" name="descripcion" [(ngModel)]="organization1.description">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>email</mat-label>
-                    <input matInput type="text" name="email" [(ngModel)]="organization1.email">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>ubicacion</mat-label>
-                    <input matInput type="text" name="ubication" [(ngModel)]="organization1.ubication">
-                </mat-form-field>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="editarOrganization()" data-dismiss="modal">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
+
+
+  
+
+
+
+
+
+
+
+

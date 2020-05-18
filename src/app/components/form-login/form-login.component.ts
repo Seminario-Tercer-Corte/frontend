@@ -31,6 +31,12 @@ export class FormLoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.router.navigate([this.returnUrl]);
+         
+          if(data.role== "Administrador"){
+            this.router.navigate(["/inicio"]);
+          }else 
+          this.router.navigate(["/usuarios"]);
+
         },
         (e) => {
           this.error = e.error.message;

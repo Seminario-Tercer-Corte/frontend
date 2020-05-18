@@ -14,25 +14,25 @@ import { HttpClient } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-administrador',
-  templateUrl: './administrador.component.html',
-  styleUrls: ['./administrador.component.css']
+  selector: 'app-equipos',
+  templateUrl: './equipos.component.html',
+  styleUrls: ['./equipos.component.css']
 })
-export class AdministradorComponent implements OnInit {
+export class EquiposComponent implements OnInit {
+
   constructor( private postService: PostService,  private router: Router,private route: ActivatedRoute,
-     private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) { }
+    private auth: AuthService,private afStorage: AngularFireStorage , private http: HttpClient) { }
 
   ngOnInit(): void {
-  console.log( JSON.parse(localStorage.user)) }
+  }
 
-
-miequipo(){
-  this.router.navigate(["/usuarios/equipos"]);
-
-}
-equipo(){
-  this.router.navigate(["/usuarios/miequipo"]);
-
-
-}
+  miequipo(){
+    this.router.navigate(["/usuarios/equipos"]);
+  
+  }
+  equipo(){
+    this.router.navigate(["/usuarios/miequipo"]);
+  
+  
+  }
 }

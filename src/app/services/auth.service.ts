@@ -49,12 +49,19 @@ export class AuthService {
         .pipe(first())
         .subscribe(
           (data) => {
-            this.router.navigate(["/inicio"]);
+            if(data.role== "Administrador"){
+              this.router.navigate(["/inicio"]);
+            }else 
+            this.router.navigate(["/usuarios"]);
+
+
           },
           (e) => {
-            console.log(e);
+         
+
           }
         );
+
     } catch (error) {
       console.log(error);
     }

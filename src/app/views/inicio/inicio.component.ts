@@ -32,8 +32,13 @@ export class InicioComponent implements OnInit {
     private http: HttpClient
   ) {
   }
+  mostrar1=true;
+  mostrar2=false;
+  mostrar3=false;
+  mostrar4=false;
+
   team2 = [];
-  organizations = [];
+  organizations2 = [];
   posts: any;
   myPosts: any;
   step = 0;
@@ -66,12 +71,17 @@ export class InicioComponent implements OnInit {
     this.te.getteams().subscribe((data: any[]) => {
       console.log(data);
       this.team2 = data;
+
     })
 
     this.organizationService.getOrganizations().subscribe((data: any[]) => {
       console.log(data);
-      this.organizations = data;
+      this.organizations2 = data;
     })
+
+    this.postService.retornarposts().subscribe(post=>{
+      this.posts=post;
+      console.log(this.posts);})
   }
 
   eliminarteam(id) {
@@ -124,7 +134,7 @@ export class InicioComponent implements OnInit {
     this.posts1.image = downloadSrc;
     console.log(this.posts1)
     this.postService.create(this.posts1);
-    this.step++;
+    this.step=7;
     this.posts1.title = "";
     this.posts1.image = "";
     this.posts1.content = "";
@@ -132,7 +142,7 @@ export class InicioComponent implements OnInit {
 
   }
   cancelar() {
-    this.step++;
+    this.step=7;
     this.posts1.title = "";
     this.posts1.image = "";
     this.posts1.content = "";
@@ -142,7 +152,7 @@ export class InicioComponent implements OnInit {
   }
 
   cancelar1() {
-    this.step++;
+    this.step=7;
     this.team1.description = "";
     this.team1.email = "";
     this.team1.game = "";
@@ -209,7 +219,7 @@ export class InicioComponent implements OnInit {
 
     this.organizationService.getOrganizations().subscribe((data: any[]) => {
       console.log(data);
-      this.organizations = data;
+      this.organizations2 = data;
     })
   }
 
@@ -226,7 +236,7 @@ export class InicioComponent implements OnInit {
 
     this.organizationService.getOrganizations().subscribe((data: any[]) => {
       console.log(data);
-      this.organizations = data;
+      this.organizations2 = data;
     })
   }
 
@@ -236,7 +246,7 @@ export class InicioComponent implements OnInit {
 
     this.organizationService.getOrganizations().subscribe((data: any[]) => {
       console.log(data);
-      this.organizations = data;
+      this.organizations2 = data;
     })
   }
 
