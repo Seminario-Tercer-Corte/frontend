@@ -13,7 +13,10 @@ export const constants = {
   organizationSave: `${API_URL}organizations/save`,
   organizationDelete: `${API_URL}organizations/delete/`,
   organizationUpdate: `${API_URL}organizations/update`,
-  profile: `${API_URL}auth/profile `,
+  profile: `${API_URL}auth/profile`,
+  updateteam: `${API_URL}auth/update`,
 
 
+
+ 
 };

@@ -6,7 +6,7 @@ import { PostService } from "src/app/services/post.service";
 import { TeamService } from "src/app/services/team.service";
 
 import { Observable } from 'rxjs';
-import { Post } from "../../modelo/post";
+import { User } from "../../modelo/user";
 import { team } from "../../modelo/team";
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage'
@@ -37,11 +37,17 @@ export class AdministradorComponent implements OnInit {
 
   })
 
-  this.auth.profile().subscribe((data: any[]) => {
-    console.log(data);
+  this.auth.profile().subscribe((data) => {console.log(data) 
+  
     this.profile = data;
+  
+  }
 
-  })
+  
+  
+  
+  );
+
 
 
 
@@ -55,7 +61,7 @@ photo=null;
 
   team2 = [];
   team3 =[];
-  profile=[];
+  profile:any={};
   mostrar1=true;
   mostrar2=false;
   mostrar3=false;
@@ -72,6 +78,15 @@ photo=null;
     ubication: null
   };
 
+  user1: User = {
+    id: null,
+    name: null,
+    username:null,
+    password:null,
+    picture:null,
+   team:{id:null}
+  };
+
  logout() {
     this.auth.logout();
     this.router.navigate(["/welcome/login"]);
@@ -81,12 +96,17 @@ photo=null;
 
   }
 
-  prueba(){
+  agregarteam(){
 
+    this.user1.id=this.profile.id
+    this.user1.name=this.profile.name
+    this.user1.username=this.profile.username
+    this.user1.picture=this.profile.picture
 
+    this.user1.team.id=this.team1.id
+    console.log(this.user1)
 
-
-  
+this.te.editarOrganization(this.user1)
 
 
   }

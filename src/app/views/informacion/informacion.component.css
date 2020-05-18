@@ -137,3 +137,12 @@ html {
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
+
+.my-fixed-item {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 15px;
+  padding: 20px;
+  width: 170px;
+  background-color: darkgray;
+}

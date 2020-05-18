@@ -38,6 +38,8 @@ export class InicioComponent implements OnInit {
   mostrar4=false;
 
   team2 = [];
+  profile = [];
+
   organizations2 = [];
   posts: any;
   myPosts: any;
@@ -74,6 +76,7 @@ export class InicioComponent implements OnInit {
 
     })
 
+    this.auth.profile().subscribe((data) => console.log(data));
     this.organizationService.getOrganizations().subscribe((data: any[]) => {
       console.log(data);
       this.organizations2 = data;
@@ -82,6 +85,8 @@ export class InicioComponent implements OnInit {
     this.postService.retornarposts().subscribe(post=>{
       this.posts=post;
       console.log(this.posts);})
+
+  
 
       console.log(localStorage)
   }

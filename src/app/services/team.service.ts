@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { team } from "../../app/modelo/team";
+import { User } from "../../app/modelo/user";
+
 import { constants } from "../../app/utils/constants";
 
 
@@ -45,6 +47,19 @@ export class TeamService {
       console.log(response);
     });
   }
+
+  editarOrganization(User) {
+    console.log(".................");
+    console.log(User);
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
+    return this.http.put<User>(`${constants.updateteam}`, User, cabecera).subscribe(response => {
+      // You can access status:
+      console.log(response);
+    });
+  }
+
+
+
 
 
 }

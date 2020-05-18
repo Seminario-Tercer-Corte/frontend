@@ -13,7 +13,7 @@ import {
 import { Router } from "@angular/router";
 import { User } from "../../app/modelo/user";
 
-const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
 
 
 @Injectable({
@@ -23,6 +23,8 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   authState: any = null;
+  Authorization: any = null;
+
 
   constructor(
     private http: HttpClient,
@@ -139,19 +141,15 @@ export class AuthService {
   }
 
 
-  editarequipo(User) {
-    console.log(".................");
-    console.log(User);
-    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
-    return this.http.put<User>(`${constants.organizationUpdate}`, User, cabecera).subscribe(response => {
-      // You can access status:
-      console.log(response);
-    });
-  }
 
   profile() {
-    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
-    return this.http.get(`${constants.profile}`, cabecera);
+    return this.http.get(`${constants.profile}`, {
+      headers: {
+        Authorization:
+          "Bearer " +
+          JSON.parse(localStorage.getItem("currentAuth"))["accessToken"],
+      },
+    });
   }
 
 }
