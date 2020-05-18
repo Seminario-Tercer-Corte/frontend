@@ -53,6 +53,7 @@ export class FormLoginComponent implements OnInit {
   ) {
     if (this.auth.currentUserValue) {
       this.router.navigate(["/inicio"]);
+      
     }
   }
 
@@ -62,6 +63,13 @@ export class FormLoginComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+  prueba(){
+
+  
+
+
+
   }
 
   ngOnInit(): void {

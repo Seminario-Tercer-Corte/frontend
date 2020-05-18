@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from "rxjs";
 import { map, first } from "rxjs/operators";
 import { constants } from "../utils/constants";
@@ -11,6 +11,10 @@ import {
   AngularFirestoreDocument,
 } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
+import { User } from "../../app/modelo/user";
+
+const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
 
 @Injectable({
   providedIn: "root",
@@ -95,8 +99,9 @@ export class AuthService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentAuth", JSON.stringify(data));
           this.currentUserSubject.next(data);
+          console.log(data)
           return data;
-        })
+        })  
       );
   }
 
@@ -113,8 +118,7 @@ export class AuthService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentAuth", JSON.stringify(data));
           this.currentUserSubject.next(data);
-          console.log(data);
-          return data;
+         return data;
         })
       );
   }
@@ -133,4 +137,21 @@ export class AuthService {
     localStorage.removeItem("currentAuth");
     this.currentUserSubject.next(null);
   }
+
+
+  editarequipo(User) {
+    console.log(".................");
+    console.log(User);
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
+    return this.http.put<User>(`${constants.organizationUpdate}`, User, cabecera).subscribe(response => {
+      // You can access status:
+      console.log(response);
+    });
+  }
+
+  profile() {
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
+    return this.http.get(`${constants.profile}`, cabecera);
+  }
+
 }

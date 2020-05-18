@@ -30,14 +30,16 @@ export class AdministradorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  console.log( JSON.parse(localStorage.user))
- this.nombre=JSON.parse(localStorage.user)["displayName"]
-  this.email=JSON.parse(localStorage.user)["email"]
-this.photo=JSON.parse(localStorage.user)["photoURL"]
 
   this.te.getteams().subscribe((data: any[]) => {
     console.log(data);
     this.team2 = data;
+
+  })
+
+  this.auth.profile().subscribe((data: any[]) => {
+    console.log(data);
+    this.profile = data;
 
   })
 
@@ -53,6 +55,7 @@ photo=null;
 
   team2 = [];
   team3 =[];
+  profile=[];
   mostrar1=true;
   mostrar2=false;
   mostrar3=false;
@@ -80,11 +83,18 @@ photo=null;
 
   prueba(){
 
-    console.log(this.nombre)
-    console.log(this.email)
-    console.log(this.photo)
 
 
+
+  
+
+
+  }
+  prueba1(){
+
+    console.log(localStorage)
+   console.log( JSON.parse(localStorage.getItem("currentAuth")))
+ 
 
 
   }

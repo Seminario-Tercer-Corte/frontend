@@ -55,6 +55,7 @@ const routes: Routes = [
   {
     path: "usuarios",
     component: AdministradorComponent,
+    canActivate: [AuthGuard],
    
   },
 

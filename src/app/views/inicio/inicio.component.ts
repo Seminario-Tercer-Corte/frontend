@@ -82,6 +82,8 @@ export class InicioComponent implements OnInit {
     this.postService.retornarposts().subscribe(post=>{
       this.posts=post;
       console.log(this.posts);})
+
+      console.log(localStorage)
   }
 
   eliminarteam(id) {

@@ -14,8 +14,10 @@
 
     <button mat-raised-button color="primary" class="botonlog"  [matMenuTriggerFor]="menu" (click)="prueba()">  <img src="{{photo}}" class="photo"/>{{nombre}}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>perfil</button>
       <button mat-menu-item (click)="logout()">desloguearse</button>
+
+  
     </mat-menu>
   
 

@@ -28,7 +28,7 @@ export class OrganizacionService {
   editarOrganization(organizacion) {
     console.log(".................");
     console.log(organizacion);
-    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
     return this.http.put<organizacion>(`${constants.organizationUpdate}`, organizacion, cabecera).subscribe(response => {
       // You can access status:
       console.log(response);
@@ -36,7 +36,7 @@ export class OrganizacionService {
   }
 
   eliminarOrganization(idOrganizacion) {
-    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken"])
     return this.http.delete(`${constants.organizationDelete}` + idOrganizacion, cabecera).subscribe(response => {
 
       // You can access status:
