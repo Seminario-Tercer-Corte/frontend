@@ -11,7 +11,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json'
 export class TeamService {
   constructor(private http: HttpClient) { }
 
-  gerGreting() {
+  getteams() {
     cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
     return this.http.get(`${constants.teamAll}`, cabecera);
   }
@@ -24,6 +24,28 @@ export class TeamService {
       console.log(response);
     });
   }
+
+  eliminarteam(idteam) {
+    console.log(idteam)
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
+    return this.http.delete(`${constants.teamDelete}`+idteam, cabecera).subscribe(response => {
+
+      // You can access status:
+      console.log(response);
+    });
+  }
+
+
+  editar(team) {
+    console.log(team)
+    cabecera.headers.set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem("currentAuth"))["accessToken1"])
+    return this.http.put<team>(`${constants.teamUpdate}`,team, cabecera).subscribe(response => {
+
+      // You can access status:
+      console.log(response);
+    });
+  }
+
 
 }
 

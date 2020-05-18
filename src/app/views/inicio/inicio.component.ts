@@ -12,6 +12,8 @@ import { team } from "../../modelo/team";
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage'
 import { HttpClient } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
+import { organizacion } from 'src/app/modelo/organizacion';
+import { OrganizacionService } from 'src/app/services/organizacion.service';
 
 @Component({
   selector: "app-inicio",
@@ -19,15 +21,33 @@ import { finalize, map } from 'rxjs/operators';
   styleUrls: ["./inicio.component.css"],
 })
 export class InicioComponent implements OnInit {
-  constructor(private postService: PostService, private te: TeamService, private router: Router, private route: ActivatedRoute, private auth: AuthService, private afStorage: AngularFireStorage, private http: HttpClient) {
+  constructor(
+    private postService: PostService,
+    private te: TeamService,
+    private organizationService: OrganizacionService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService,
+    private afStorage: AngularFireStorage,
+    private http: HttpClient
+  ) {
   }
   team2 = [];
+  organizations = [];
   posts: any;
   myPosts: any;
   step = 0;
   setStep(index: number) {
     this.step = index;
   }
+
+  organization1: organizacion = {
+    description: null,
+    email: null,
+    name: null,
+    ubication: null
+  };
+
   team1: team = {
     description: null,
     email: null,
@@ -43,7 +63,22 @@ export class InicioComponent implements OnInit {
     author: null,
   };
   ngOnInit(): void {
-    this.te.gerGreting().subscribe((data: any[]) => {
+    this.te.getteams().subscribe((data: any[]) => {
+      console.log(data);
+      this.team2 = data;
+    })
+
+    this.organizationService.getOrganizations().subscribe((data: any[]) => {
+      console.log(data);
+      this.organizations = data;
+    })
+  }
+
+  eliminarteam(id) {
+    this.te.eliminarteam(id)
+    console.log(id)
+
+    this.te.getteams().subscribe((data: any[]) => {
       console.log(data);
       this.team2 = data;
     })
@@ -52,6 +87,31 @@ export class InicioComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.router.navigate(["/welcome/login"]);
+  }
+
+  editar(team) {
+    this.team1.id = team.id;
+    this.team1.description = team.description;
+    this.team1.email = team.email;
+    this.team1.game = team.game;
+    this.team1.name = team.name;
+    this.team1.organization_id = team.organization.id;
+    this.team1.ubication = team.ubication;
+
+    console.log(team.organization.id)
+
+  }
+
+  editarteam() {
+    console.log(this.team1)
+
+
+    this.te.editar(this.team1)
+
+    this.te.getteams().subscribe((data: any[]) => {
+      console.log(data);
+      this.team2 = data;
+    })
   }
 
   agregarteam() {
@@ -90,21 +150,10 @@ export class InicioComponent implements OnInit {
     this.team1.organization_id;
     this.team1.ubication = "";
   }
+
   local() {
     this.auth.local();
-
-
-
-
-
-
-
-
-
   }
-
-
-
 
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -151,5 +200,52 @@ export class InicioComponent implements OnInit {
 
 
 
+  }
+
+  //Organization
+  agregarOrganization() {
+    this.organizationService.registroOrganization(this.organization1);
+    this.cancelar1
+
+    this.organizationService.getOrganizations().subscribe((data: any[]) => {
+      console.log(data);
+      this.organizations = data;
+    })
+  }
+
+  loadOrganization(organization) {
+    this.organization1.id = organization.id;
+    this.organization1.description = organization.description;
+    this.organization1.email = organization.email;
+    this.organization1.name = organization.name;
+    this.organization1.ubication = organization.ubication;
+  }
+
+  editarOrganization() {
+    this.organizationService.editarOrganization(this.organization1)
+
+    this.organizationService.getOrganizations().subscribe((data: any[]) => {
+      console.log(data);
+      this.organizations = data;
+    })
+  }
+
+  eliminarOrganization(id) {
+    this.organizationService.eliminarOrganization(id)
+    console.log(id)
+
+    this.organizationService.getOrganizations().subscribe((data: any[]) => {
+      console.log(data);
+      this.organizations = data;
+    })
+  }
+
+
+  cancelar2() {
+    this.step++;
+    this.organization1.description = "";
+    this.organization1.email = "";
+    this.organization1.name = "";
+    this.organization1.ubication = "";
   }
 }
